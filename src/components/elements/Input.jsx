@@ -5,6 +5,8 @@ class Input extends React.PureComponent {
 	componentWillMount() {
 		this.setState({
 			focused: false,
+			hasValue: false,
+			error: null,
 		});
 	}
 
@@ -17,6 +19,7 @@ class Input extends React.PureComponent {
 			type: PropTypes.string,
 			id: PropTypes.string,
 			defaultValue: PropTypes.string,
+			validate: PropTypes.func,
 		};
 	}
 
@@ -29,27 +32,40 @@ class Input extends React.PureComponent {
 			type: 'text',
 			id: '',
 			defaultValue: '',
+			validate: () => false, //  should return error string or null
 		};
+	}
+
+	handleKeyDown(e) {
+		const { target } = e;
+		setTimeout(() => {
+			this.setState({
+				hasValue: !!target.value.length,
+				error: this.props.validate(target.value),
+			});
+		}, 0);
 	}
 
 	render() {
 		let className = 'md-input-group md-input-animated';
 		if (this.state.focused) className += ' md-input-focused';
-		if (this.value) className += ' md-input-has-value';
+		if (this.state.hasValue) className += ' md-input-has-value';
+		if (this.state.error) className += ' md-input-error';
 		return (
 			<div className={className}>
-				<label htmlFor={this.props.id} className="md-input-label">{this.props.label}</label>
+				<label htmlFor={this.props.id} className="md-input-label">{this.state.error ? this.state.error : this.props.label}</label>
 				<input
 					type={this.props.type}
 					id={this.props.id}
 					autoComplete={this.props.autoComplete}
 					className={`md-input ${this.props.className}`}
 					name={this.props.name}
+					defaultValue={this.props.defaultValue}
 					onFocus={() => { this.setState({ focused: true }); }}
 					onBlur={() => { this.setState({ focused: false }); }}
-					defaultValue={this.props.defaultValue}
+					onKeyDown={(e) => { this.handleKeyDown(e); }}
 					ref={(node) => {
-						this.value = node;
+						this.node = node;
 					}}
 				/>
 			</div>

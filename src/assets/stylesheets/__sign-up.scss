@@ -1,3 +1,4 @@
+/* todo move md-input to seperate file. Imporove selectors */
 .wrap {
 	background: #fff;
 	padding: 44px 65px;
@@ -80,4 +81,8 @@ input:focus {
 	-webkit-transform-origin: left center;
 	-webkit-transform: translate3d(0,22px,0);
 	transform: translate3d(0,22px,0);
+}
+
+.md-input-error .md-input-label {
+	color: #d45a58;
 }
