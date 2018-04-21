@@ -11,6 +11,8 @@ export default class SignUp extends React.Component {
 
 					<div className="clearfix">
 						<Input label="Golos name" />
+						<Input label="Password" type="password" />
+						<Input label="Confirm password" type="password" />
 					</div>
 				</form>
 			</div>

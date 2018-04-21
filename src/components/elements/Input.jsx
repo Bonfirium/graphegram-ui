@@ -16,6 +16,7 @@ class Input extends React.PureComponent {
 			name: PropTypes.string,
 			type: PropTypes.string,
 			id: PropTypes.string,
+			defaultValue: PropTypes.string,
 		};
 	}
 
@@ -27,12 +28,16 @@ class Input extends React.PureComponent {
 			name: '',
 			type: 'text',
 			id: '',
+			defaultValue: '',
 		};
 	}
 
 	render() {
+		let className = 'md-input-group md-input-animated';
+		if (this.state.focused) className += ' md-input-focused';
+		if (this.value) className += ' md-input-has-value';
 		return (
-			<div className={`md-input-group md-input-animated${this.state.focused ? ' md-input-focused md-input-has-value' : ''}`}>
+			<div className={className}>
 				<label htmlFor={this.props.id} className="md-input-label">{this.props.label}</label>
 				<input
 					type={this.props.type}
@@ -42,6 +47,10 @@ class Input extends React.PureComponent {
 					name={this.props.name}
 					onFocus={() => { this.setState({ focused: true }); }}
 					onBlur={() => { this.setState({ focused: false }); }}
+					defaultValue={this.props.defaultValue}
+					ref={(node) => {
+						this.value = node;
+					}}
 				/>
 			</div>
 		);
