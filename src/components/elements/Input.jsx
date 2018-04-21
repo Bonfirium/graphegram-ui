@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Input extends React.PureComponent {
+	componentWillMount() {
+		this.setState({
+			focused: false,
+		});
+	}
+
 	static get propTypes() {
 		return {
 			className: PropTypes.string,
@@ -26,16 +32,16 @@ class Input extends React.PureComponent {
 
 	render() {
 		return (
-			<div className={`md-input-group md-input-animated${this.focused ? ' .md-input-focused .md-input-has-value' : ''}`}>
-				<label className="md-input-label">{this.props.label}</label>   {/* todo add for */}
+			<div className={`md-input-group md-input-animated${this.state.focused ? ' md-input-focused md-input-has-value' : ''}`}>
+				<label htmlFor={this.props.id} className="md-input-label">{this.props.label}</label>
 				<input
 					type={this.props.type}
 					id={this.props.id}
 					autoComplete={this.props.autoComplete}
 					className={`md-input ${this.props.className}`}
 					name={this.props.name}
-					onFocus={() => { console.log('hui1'); this.focused = true; }}
-					onBlur={() => { console.log('hui0'); this.focused = false; }}
+					onFocus={() => { this.setState({ focused: true }); }}
+					onBlur={() => { this.setState({ focused: false }); }}
 				/>
 			</div>
 		);
