@@ -10,50 +10,56 @@ export default class App extends React.Component {
 			password: ''
 		};
 
+		this.handleChangeName = this.handleChangeName.bind(this);
+		this.handleChangePassword = this.handleChangePassword.bind(this);
+	}
+
+	handleChangeName(event){
+		this.setState({name: event.target.value});
+	}
+
+	handleChangePassword(event){
+		this.setState({password: event.target.value});
+	}
+
+	submit(e) {
+		e.preventDefault();
+		console.log(this.state.name);
+		console.log(this.state.password);
 	}
 
 	render() {
-		console.log(this.state.name);
 		return (
-		  <div className="login_page_wrap">
-			  <div className="login_form_wrap">
+			<div className="login_page_wrap">
+				<div className="login_form_wrap">
 
-				  <form
-					name="mySendCodeForm"
-					ng-if="!credentials.phone_code_hash"
-					ng-submit="sendCode()"
-					className="ng-pristine ng-invalid ng-invalid-required"
-				  >
-					  <h3 className="login_form_head" my-i18n="login_sign_in">Sign in</h3>
-					  <p className="login_form_lead" my-i18n="login_enter_number_description">Please enter your
+					<form name="mySendCodeForm">
+						<h3 className="login_form_head" my-i18n="login_sign_in">Sign in</h3>
+						<p className="login_form_lead" my-i18n="login_enter_number_description">Please enter your
 						  login and
 						  passoword.
-					  </p>
+						</p>
+
+						<div className="login_phone_groups_wrap clearfix">
+
+							<Input
+								label="Name"
+								onChange={this.handleChangeName}
+							/>
+
+							<Input
+								label="Password"
+								onChange={this.handleChangePassword}
+							/>
+						</div>
 
 
-					  <div className="login_phone_groups_wrap clearfix">
-
-						  <Input label="Name"/>
-						  <Input label="Password"/>
-
-					  </div>
-					  <div
-						className="login_form_messaging ng-hide"
-						ng-show="progress.enabled"
-						my-i18n="login_generating_keys_info"
-					  >
-						  Keys are only generated once. This can take a few minutes on
-						  slower devices, please be patient.
+						<button className="login_head_submit_btn" onClick={this.submit.bind(this)}>Login</button>
+					</form>
 
 
-					  </div>
-
-					  <button className="login_head_submit_btn">Login</button>
-				  </form>
-
-
-			  </div>
-		  </div>
+				</div>
+			</div>
 		);
 	}
 }

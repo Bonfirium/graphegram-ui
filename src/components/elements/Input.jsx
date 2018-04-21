@@ -48,9 +48,7 @@ class Input extends React.PureComponent {
 					onFocus={() => { this.setState({ focused: true }); }}
 					onBlur={() => { this.setState({ focused: false }); }}
 					defaultValue={this.props.defaultValue}
-					ref={(node) => {
-						this.value = node;
-					}}
+					onChange={this.props.onChange}
 				/>
 			</div>
 		);
