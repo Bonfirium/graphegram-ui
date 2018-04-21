@@ -8,7 +8,7 @@ export default class Routes extends React.Component {
 	render() {
 		return (
 			<Switch>
-				<AppRoute exact path="/" component={Home}/>
+				<AppRoute exact path="/" component={Home} />
 				<Route exact path="/sign-up" component={SignUp} />
 			</Switch>
 		);
