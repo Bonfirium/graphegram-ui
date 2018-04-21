@@ -19,7 +19,7 @@ const { version } = require('./package.json');
 
 module.exports = {
 	entry: {
-		app: path.resolve('src/signIn.jsx'),
+		app: path.resolve('src/index.jsx'),
 	},
 	output: {
 		publicPath: '/',
