@@ -4,15 +4,11 @@
   box-sizing: border-box;
 }
 
-.login_page {
-  margin: -131px auto 90px;
-  max-width: 404px;
-}
-
 .login_page_wrap{
-  padding: 200px 200px 200px  38% ;
   background: #99baef;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
 }
 
 .login_form_wrap {
@@ -23,7 +19,7 @@
   box-shadow: 0 1px 1px rgba(97,127,152,.2), 1px 0 0 rgba(97,127,152,.1), -1px 0 0 rgba(97,127,152,.1);
   border-radius: 2px;
   border: 0;
-  margin: 0;
+  margin: 10vh;
   max-width: none;
   width: 409px;
   height: 338px;

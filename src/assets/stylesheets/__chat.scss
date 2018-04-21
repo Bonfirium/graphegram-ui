@@ -1,0 +1,25 @@
+.page {
+  height: 100%;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main_container {
+  flex: 1 1 auto;
+
+  //margin: 3% 5% 0 5%;
+
+}
+
+.chat_list_container {
+  display: inline-block;
+
+}
+
+.message_list_container {
+  display: inline-block;
+
+}

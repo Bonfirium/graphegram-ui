@@ -7,19 +7,19 @@ export default class App extends React.Component {
 
 		this.state = {
 			name: '',
-			password: ''
+			password: '',
 		};
 
 		this.handleChangeName = this.handleChangeName.bind(this);
 		this.handleChangePassword = this.handleChangePassword.bind(this);
 	}
 
-	handleChangeName(event){
-		this.setState({name: event.target.value});
+	handleChangeName(event) {
+		this.setState({ name: event.target.value });
 	}
 
-	handleChangePassword(event){
-		this.setState({password: event.target.value});
+	handleChangePassword(event) {
+		this.setState({ password: event.target.value });
 	}
 
 	submit(e) {
@@ -32,12 +32,9 @@ export default class App extends React.Component {
 		return (
 			<div className="login_page_wrap">
 				<div className="login_form_wrap">
-
 					<form name="mySendCodeForm">
-						<h3 className="login_form_head" my-i18n="login_sign_in">Sign in</h3>
-						<p className="login_form_lead" my-i18n="login_enter_number_description">Please enter your
-						  login and
-						  passoword.
+						<h3 className="login_form_head">Sign in</h3>
+						<p className="login_form_lead">Please enter your login and passoword.
 						</p>
 
 						<div className="login_phone_groups_wrap clearfix">
@@ -53,11 +50,8 @@ export default class App extends React.Component {
 							/>
 						</div>
 
-
 						<button className="login_head_submit_btn" onClick={this.submit.bind(this)}>Login</button>
 					</form>
-
-
 				</div>
 			</div>
 		);
