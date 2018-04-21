@@ -21,19 +21,14 @@ const messages = [{
 	isReceived: false,
 }];
 
-const dialogs = [{}];
+const dialogs = [{ user: 'Deniska' }];
 
 export default class ChatContainer extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-
 	render() {
 		return (
 			<div className="page">
 				<div className="main_container">
-					<div className="chat_list_container">
+					<div className="dialogs_list_container">
 						<DialogList dialogs={dialogs} />
 					</div>
 

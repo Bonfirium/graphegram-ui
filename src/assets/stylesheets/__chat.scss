@@ -14,12 +14,17 @@
 
 }
 
-.chat_list_container {
+.dialogs_list_container {
+  background: #6bace1;
+  width: 25vh;
   display: inline-block;
 
 }
 
 .message_list_container {
+  background: coral;
+
+  width: 75vh;
   display: inline-block;
 
 }

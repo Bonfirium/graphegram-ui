@@ -20,19 +20,16 @@
 }
 
 /* Style images */
-.message_item_container img {
-  float: left;
-  max-width: 60px;
-  width: 100%;
-  margin-right: 20px;
+.message_avatar {
   border-radius: 50%;
-}
-
-/* Style the right image */
-.message_item_container img.right {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 2px solid #666;
+  color: #666;
+  text-align: center;
   float: right;
-  margin-left: 20px;
-  margin-right:0;
+  font: 15px Arial, sans-serif;
 }
 
 /* Style time text */
@@ -41,16 +38,20 @@
   color: #aaa;
 }
 
-/* Style time text */
+.send_msg{
+  background: #b8ddc9;
+}
+
+.recv_msg{
+  background: #b8dbdd;
+}
+
+.message_item_time-right {
+  float: right;
+  color: #aaa;
+}
+
 .message_item_time-left {
   float: left;
   color: #999;
-}
-
-.message_main_container{
-
-}
-
-.message_list_wrap{
-
 }
