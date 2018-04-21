@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 
 class Input extends React.PureComponent {
 	componentWillMount() {
+		this.getValue = () => (this.node ? this.node.value : null);
+		this.validate = (value, needToSetState = false) => {
+			const error = this.props.validation(value);
+			if (needToSetState) { this.setState({ error }); }
+			this.isValid = !error;
+			return error;
+		};
+		this.validate(this.props.defaultValue);
 		this.setState({
 			focused: false,
 			hasValue: false,
@@ -19,7 +27,7 @@ class Input extends React.PureComponent {
 			type: PropTypes.string,
 			id: PropTypes.string,
 			defaultValue: PropTypes.string,
-			validate: PropTypes.func,
+			validation: PropTypes.func,
 		};
 	}
 
@@ -30,18 +38,18 @@ class Input extends React.PureComponent {
 			label: '',
 			name: '',
 			type: 'text',
-			id: '',
+			id: undefined,
 			defaultValue: '',
-			validate: () => false, //  should return error string or null
+			validation: () => null, //  should return string on error or null on success
 		};
 	}
 
-	handleKeyDown(e) {
-		const { target } = e;
+	handleKeyDown(event) {
+		const { target } = event;
 		setTimeout(() => {
 			this.setState({
+				error: this.validate(target.value),
 				hasValue: !!target.value.length,
-				error: this.props.validate(target.value),
 			});
 		}, 0);
 	}
@@ -63,7 +71,7 @@ class Input extends React.PureComponent {
 					defaultValue={this.props.defaultValue}
 					onFocus={() => { this.setState({ focused: true }); }}
 					onBlur={() => { this.setState({ focused: false }); }}
-					onKeyDown={(e) => { this.handleKeyDown(e); }}
+					onKeyDown={(event) => { this.handleKeyDown(event); }}
 					ref={(node) => {
 						this.node = node;
 					}}
