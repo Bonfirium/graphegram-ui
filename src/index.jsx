@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 import Routes from './routes';
 import './assets/loader';
+import Header from './components/layout/Header';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
