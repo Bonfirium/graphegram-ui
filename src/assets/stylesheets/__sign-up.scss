@@ -55,14 +55,14 @@ input:focus {
 	border-bottom: 2px solid #6bace1
 }
 
-.md-input-animated .md-input-group, .md-input-animated .md-input-label {
-	-webkit-transition: all .15s cubic-bezier(.35, 0, .25, 1);
-	transition: all .15s cubic-bezier(.35, 0, .25, 1)
-}
-
 .md-input-has-value .md-input-label {
 	-webkit-transform: scale(.9);
 	transform: scale(.9)
+}
+
+.md-input-animated .md-input-group, .md-input-animated .md-input-label {
+	-webkit-transition: all .15s cubic-bezier(.35, 0, .25, 1);
+	transition: all .15s cubic-bezier(.35, 0, .25, 1)
 }
 
 .md-input-label {
