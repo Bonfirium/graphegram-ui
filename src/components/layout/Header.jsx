@@ -10,6 +10,9 @@ class Header extends React.PureComponent {
 				<NavLink to="/" exact activeClassName="active">
 					Index Link
 				</NavLink>
+				<NavLink to="/sign-up" exact activeClassName="active">
+					Sign Up
+				</NavLink>
 			</header>
 		);
 	}

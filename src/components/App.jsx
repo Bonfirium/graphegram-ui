@@ -9,10 +9,8 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div className="global-wrap">
-				<main className="inner">
-					<Header />
-					{this.props.children}
-				</main>
+				<Header />
+				{this.props.children}
 				<Footer />
 			</div>
 		);
@@ -21,5 +19,7 @@ export default class App extends React.Component {
 }
 
 App.propTypes = {
-	children: PropTypes.element.isRequired,
+	children: PropTypes.element,
 };
+
+App.defaultProps = { children: null };
