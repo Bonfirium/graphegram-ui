@@ -1,0 +1,11 @@
+.auth_wrapper {
+	background: #fff;
+	padding: 44px 65px;
+	-webkit-box-shadow: 0 1px 1px rgba(97, 127, 152, .2), 1px 0 0 rgba(97, 127, 152, .1), -1px 0 0 rgba(97, 127, 152, .1);
+	-moz-box-shadow: 0 1px 1px rgba(97, 127, 152, .2), 1px 0 0 rgba(97, 127, 152, .1), -1px 0 0 rgba(97, 127, 152, .1);
+	box-shadow: 0 1px 1px rgba(97, 127, 152, .2), 1px 0 0 rgba(97, 127, 152, .1), -1px 0 0 rgba(97, 127, 152, .1);
+	border-radius: 2px;
+	border: 0;
+	margin: 0;
+	max-width: none;
+}
