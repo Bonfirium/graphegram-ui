@@ -1,25 +1,12 @@
 import React from 'react';
 import Input from '../../elements/Input';
+import { validateName, validatePassword } from '../../../helpers/auth';
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			name: '',
-			password: '',
-		};
-
-		this.handleChangeName = this.handleChangeName.bind(this);
-		this.handleChangePassword = this.handleChangePassword.bind(this);
-	}
-
-	handleChangeName(event) {
-		this.setState({ name: event.target.value });
-	}
-
-	handleChangePassword(event) {
-		this.setState({ password: event.target.value });
+		this.nodes = {};
 	}
 
 	submit(e) {
@@ -30,27 +17,31 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<div className="login_page_wrap">
-				<div className="login_form_wrap">
-					<form name="mySendCodeForm">
-						<h3 className="login_form_head">Sign in</h3>
-						<p className="login_form_lead">Please enter your login and passoword.
-						</p>
+			<div className="auth-page">
+				<div className="auth-wrap">
+					<form>
+						<h3 className="auth-wrap-head">Sign in</h3>
+						<p className="auth-wrap-lead">Please enter your login and password.</p>
 
-						<div className="login_phone_groups_wrap clearfix">
+						<div className="clearfix">
 
 							<Input
-								label="Name"
-								onChange={this.handleChangeName}
+								label="Golos nickname"
+								ref={(node) => {
+									this.nodes.name = node;
+								}}
+								validation={validateName}
 							/>
-
 							<Input
 								label="Password"
-								onChange={this.handleChangePassword}
+								type="password"
+								ref={(node) => {
+									this.nodes.password = node;
+								}}
+								validation={validatePassword}
 							/>
 						</div>
-
-						<button className="login_head_submit_btn" onClick={this.submit.bind(this)}>Login</button>
+						<button className="auth-wrap-submit-btn" onClick={() => this.submit()}>Login</button>
 					</form>
 				</div>
 			</div>
