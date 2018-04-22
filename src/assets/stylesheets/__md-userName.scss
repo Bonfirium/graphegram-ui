@@ -1,0 +1,29 @@
+.md-user-name {
+	color: #fff;
+	width: 100%;
+	margin-top: 12px;
+
+	.status {
+		content: '';
+		left: -12px;
+		top: 8px;
+		position: absolute;
+		height: 7px;
+		width: 7px;
+		border-radius: 50%;
+
+		&.text {
+			position: relative;
+			margin-left: 14px;
+			color: #a8adb3;
+		}
+
+		&.on {
+			background: #62bf6e;
+		}
+
+		&.off {
+			background: #fd8064;
+		}
+	}
+}
