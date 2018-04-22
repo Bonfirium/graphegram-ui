@@ -3,7 +3,7 @@ import MenuUserItem from './MenuUserItem';
 
 export default class LeftMenu extends React.Component {
 	_renderList(items, handler) {
-		return (items.map((item, index) => <MenuUserItem info={item} selectDialog = {handler}/>));
+		return (items.map((item, index) => <MenuUserItem  key={index} info={item} selectDialog = {handler}/>));
 	}
 
 	render() {
