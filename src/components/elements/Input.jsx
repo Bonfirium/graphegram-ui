@@ -3,14 +3,8 @@ import PropTypes from 'prop-types';
 
 class Input extends React.PureComponent {
 	componentWillMount() {
-		this.getValue = () => (this.node ? this.node.value : null);
-		this.validate = (value, needToSetState = false) => {
-			const error = this.props.validation(value);
-			if (needToSetState) { this.setState({ error }); }
-			this.isValid = !error;
-			return error;
-		};
-		this.validate(this.props.defaultValue);
+		this.validate({ value: this.props.defaultValue, needToSetState: true });
+
 		this.setState({
 			focused: false,
 			hasValue: false,
@@ -28,6 +22,7 @@ class Input extends React.PureComponent {
 			id: PropTypes.string,
 			defaultValue: PropTypes.string,
 			validation: PropTypes.func,
+			required: PropTypes.bool,
 		};
 	}
 
@@ -36,20 +31,32 @@ class Input extends React.PureComponent {
 			className: '',
 			autoComplete: 'off',
 			label: '',
-			name: '',
+			name: undefined,
 			type: 'text',
 			id: undefined,
 			defaultValue: '',
+			required: false,
 			validation: () => null, //  should return string on error or null on success
 		};
 	}
 
-	handleKeyDown(event) {
-		const { target } = event;
+	get value() {
+		return this.node ? this.node.value : null;
+	}
+
+	validate(params) {
+		params = { ...{ value: this.value, needToSetState: false }, ...params };
+		const error = this.props.validation(params.value);
+		if (params.needToSetState) { this.setState({ error }); }
+		this.isValid = !error;
+		return error;
+	}
+
+	handleKeyDown() {
 		setTimeout(() => {
 			this.setState({
-				error: this.validate(target.value),
-				hasValue: !!target.value.length,
+				error: this.validate({ value: this.value }),
+				hasValue: !!this.value.length,
 			});
 		}, 0);
 	}
@@ -66,12 +73,13 @@ class Input extends React.PureComponent {
 					type={this.props.type}
 					id={this.props.id}
 					autoComplete={this.props.autoComplete}
+					required={this.props.required}
 					className={`md-input ${this.props.className}`}
 					name={this.props.name}
 					defaultValue={this.props.defaultValue}
 					onFocus={() => { this.setState({ focused: true }); }}
 					onBlur={() => { this.setState({ focused: false }); }}
-					onKeyDown={(event) => { this.handleKeyDown(event); }}
+					onKeyDown={() => { this.handleKeyDown(); }}
 					ref={(node) => {
 						this.node = node;
 					}}
