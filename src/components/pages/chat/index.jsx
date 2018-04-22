@@ -2,7 +2,7 @@ import React from 'react';
 import LeftMenu from './leftMenu/LeftMenu';
 import Chat from './messages/Chat';
 
-const messages = () => [ {
+const messages = [ {
 	name: 'Deniska',
 	messages: [ {
 		sender: 'Egorka',
@@ -66,22 +66,49 @@ const messages = () => [ {
 } ];
 
 const getDialogs = () => [ {name: 'Deniska'}, {name: 'Anton'} ];
-const getMessagesById = name => (messages().find(item => item.name === name) || {messages: [], name});
+
+const sendMessage = (userName, message) => {
+	const userMessages = messages.find(item => item.name === userName);
+	if (userMessages) {
+		userMessages.messages.push({
+			sender: 'Deniska',
+			message,
+			time: Date.UTC(),
+		});
+	}
+};
+const getMessagesById = name => (messages.find(item => item.name === name) || {messages: [], name});
 
 export default class ChatContainer extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.selectDialog = this.selectDialog.bind(this);
+		this.sendMessage = this.sendMessage.bind(this);
 
 		this.state = {
-			dialogs: {},
+			dialogs: [],
 			currentDialogId: null,
 			currentMessages: [],
 		};
+
+		this.messageResetTimer = null;
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.currentDialogId !== prevState.currentDialogId) {
+			if (this.messageResetTimer) {
+				clearInterval(this.messageResetTimer);
+			}
+			this.messageResetTimer = setInterval(() => {
+				const messageObj = getMessagesById(this.state.currentDialogId);
+				this.setState({dialogs: getDialogs(), currentMessages: messageObj.messages});
+			}, 5000);
+		}
 	}
 
 	componentWillMount() {
+
 		this.setState({dialogs: getDialogs()});
 	}
 
@@ -91,12 +118,20 @@ export default class ChatContainer extends React.Component {
 		this.setState({currentDialogId: userName, currentMessages: messageObj.messages});
 	}
 
+	sendMessage(message) {
+		sendMessage(this.state.currentDialogId, message);
+	}
+
 	render() {
 		return (
 		  <div className="page">
 			  <div className="ui">
 				  <LeftMenu dialogs={ this.state.dialogs } selectDialog={ this.selectDialog }/>
-				  <Chat messages={ this.state.currentMessages } user="Deniska"/>
+				  <Chat
+					messages={ this.state.currentMessages }
+					user={ this.state.currentDialogId }
+					sendMessage={ this.sendMessage }
+				  />
 			  </div>
 		  </div>
 		);

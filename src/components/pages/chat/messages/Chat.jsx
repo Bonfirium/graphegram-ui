@@ -9,7 +9,7 @@ export default class Chat extends React.Component {
 			<div className="chat">
 				<ChatHeader user={this.props.user} />
 				<MessageList messages={this.props.messages} />
-				<WriteForm />
+				<WriteForm sendMessage={this.props.sendMessage} />
 			</div>
 		);
 	}
