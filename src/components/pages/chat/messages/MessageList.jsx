@@ -1,6 +1,5 @@
 import React from 'react';
 import MessageItem from './MessageItem';
-import { Element } from 'react-scroll';
 
 export default class Chat extends React.Component {
 	_renderList(items) {
@@ -10,13 +9,7 @@ export default class Chat extends React.Component {
 	render() {
 		return (
 			<div className="messages">
-				<Element style={{
-					height: '100%',
-					overflow: 'scroll',
-				}}
-				>
-					{ this._renderList(this.props.messages) }
-				</Element>
+				{ this._renderList(this.props.messages) }
 			</div>
 		);
 	}

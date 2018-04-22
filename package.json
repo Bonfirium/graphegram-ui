@@ -37,7 +37,6 @@
 		"react-router": "^4.2.0",
 		"react-router-dom": "^4.2.2",
 		"react-router-redux": "^5.0.0-alpha.9",
-		"react-scroll": "^1.7.9",
 		"redux": "^3.7.2",
 		"redux-modules": "^1.1.0",
 		"redux-thunk": "^2.2.0",
