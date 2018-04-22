@@ -2,20 +2,19 @@ import React from 'react';
 
 export default class MessageItem extends React.Component {
 	render() {
-		// TODO message css
-		// TODO isOwnMessage
 		const {
 			sender, message, time, isReceived,
 		} = this.props.info;
-		const messageCommonClass = `message_item_container ${isReceived ? 'darker' : ''}`;
+		const messageCommonClass = isReceived ? 'friend-with-a-SVAGina' : 'i';
 
 		return (
-			<div className={messageCommonClass}>
-				<div className="message_name">{ sender }</div>
-				<div className="message_avatar">{ sender[0] }</div>
-				<p>{ message }</p>
-				<span className="message_time-right">{ time }</span>
-			</div>
+			<li className={messageCommonClass}>
+				<div className="head">
+					<span className="time">{ time }</span>
+					<span className="name">{ sender }</span>
+				</div>
+				<div className="message">{ message }</div>
+			</li>
 		);
 	}
 }

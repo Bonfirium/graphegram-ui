@@ -1,6 +1,6 @@
 import React from 'react';
-import DialogList from './dialogs/DialogList';
-import MessageList from './messages/MessageList';
+import LeftMenu from './leftMenu/LeftMenu';
+import Chat from './messages/Chat';
 
 const messages = [{
 	sender: 'Egorka',
@@ -14,32 +14,41 @@ const messages = [{
 	time: '17:21',
 	isReceived: true,
 },
+
 {
 	sender: 'Egorka',
 	message: 'piska',
 	time: '17:22',
 	isReceived: false,
+},
+{
+	sender: 'Deniska',
+	message: 'are you kidding me??',
+	time: '17:23',
+	isReceived: true,
+},
+{
+	sender: 'Egorka',
+	message: 'no. sry, man. it"s my dog',
+	time: '17:24',
+	isReceived: false,
+},
+{
+	sender: 'Deniska',
+	message: 'ok, no problems (<3)',
+	time: '18:55',
+	isReceived: true,
 }];
 
-const dialogs = [{}];
+const dialogs = [{ name: 'Deniska' },{ name: 'Anton' }];
 
 export default class ChatContainer extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-
 	render() {
 		return (
 			<div className="page">
-				<div className="main_container">
-					<div className="chat_list_container">
-						<DialogList dialogs={dialogs} />
-					</div>
-
-					<div className="message_list_container">
-						<MessageList messages={messages} />
-					</div>
+				<div className="ui">
+					<LeftMenu dialogs={dialogs} />
+					<Chat messages={messages} user="Deniska" />
 				</div>
 			</div>
 		);
