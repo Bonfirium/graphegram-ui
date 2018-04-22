@@ -3,5 +3,5 @@ import grapheGramReducer from './GrapheGramReducer';
 
 export default {
 	some: someReducer.reducer,
-	signIn: grapheGramReducer.reducer,
+	graphegram: grapheGramReducer.reducer,
 };

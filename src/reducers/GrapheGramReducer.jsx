@@ -1,7 +1,7 @@
 import { createModule } from 'redux-modules';
 
 export default createModule({
-	name: 'signIn',
+	name: 'graphegram',
 	initialState: {
 		isAuth: false,
 	},

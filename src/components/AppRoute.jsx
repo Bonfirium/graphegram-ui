@@ -6,12 +6,11 @@ import { connect } from 'react-redux';
 import App from './App';
 
 const AppRoute = ({
-	 isAuth, ...rest, component
+	component, isAuth, ...rest
 }) => (
 	<Route
 		{...rest}
 		render={(props) => {
-			console.log(isAuth);
 			if (!isAuth) {
 				return <Redirect to="/sign-in" />;
 			}
@@ -27,5 +26,5 @@ AppRoute.propTypes = {
 };
 
 export default connect(state => ({
-	isAuth: state.isAuth,
+	isAuth: state.graphegram.isAuth,
 }))(AppRoute);
