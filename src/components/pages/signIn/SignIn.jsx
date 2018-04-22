@@ -1,23 +1,37 @@
 import React from 'react';
 import Input from '../../elements/Input';
 import { validateName, validatePassword } from '../../../helpers/auth';
+import GrapheGramActions from '../../../actions/GrapheGramActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import App from '../../App';
 
-export default class App extends React.Component {
+class SignIn extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.nodes = {};
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	submit(e) {
-		e.preventDefault();
+	handleSubmit(e) {
+		const validateParams = { needToSetState: true };
+		if (this.name.validate(validateParams)
+		  || this.password.validate(validateParams)
+		) {
+			e.preventDefault();
+			return;
+		}
+
+		const name = this.name.value;
+		const password = this.password.value;
+
+		this.props.signIn(name, password);
 	}
 
 	render() {
 		return (
 			<div className="auth-page">
 				<div className="auth-wrap">
-					<form>
+					<form onSubmit={this.handleSubmit} action="/chat">
 						<h3 className="auth-wrap-head">Sign in</h3>
 						<p className="auth-wrap-lead">Please enter your login and password.</p>
 
@@ -26,7 +40,7 @@ export default class App extends React.Component {
 							<Input
 								label="Golos nickname"
 								ref={(node) => {
-									this.nodes.name = node;
+									this.name = node;
 								}}
 								validation={validateName}
 							/>
@@ -34,7 +48,7 @@ export default class App extends React.Component {
 								label="Password"
 								type="password"
 								ref={(node) => {
-									this.nodes.password = node;
+									this.password = node;
 								}}
 								validation={validatePassword}
 							/>
@@ -46,3 +60,21 @@ export default class App extends React.Component {
 		);
 	}
 }
+
+
+SignIn.propTypes = {
+	signIn: PropTypes.func.isRequired,
+};
+
+App.defaultProps = {
+	signIn: null,
+};
+
+
+export default connect(
+	state => ({
+	}),
+	dispatch => ({
+	  signIn: (name, privateKey) => dispatch(GrapheGramActions.signIn(name, privateKey)),
+	}),
+)(SignIn);

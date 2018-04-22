@@ -31,7 +31,6 @@ export default class WriteForm extends React.Component {
 
 	sendEnterUp(e) {
 		if (e.key === 'Enter' && this.state.message.length !== 0) {
-			this.props.sendMessage(this.state.message);
 			this.afterSend();
 		}
 	}

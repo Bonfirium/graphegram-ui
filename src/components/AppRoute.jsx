@@ -6,14 +6,12 @@ import { connect } from 'react-redux';
 import App from './App';
 
 const AppRoute = ({
-	component, authChecked, isAuth, ...rest
+	 isAuth, ...rest, component
 }) => (
 	<Route
 		{...rest}
 		render={(props) => {
-			if (!authChecked) {
-				return null;
-			}
+			console.log(isAuth);
 			if (!isAuth) {
 				return <Redirect to="/sign-in" />;
 			}
@@ -25,12 +23,9 @@ const AppRoute = ({
 );
 
 AppRoute.propTypes = {
-	isAuth: PropTypes.bool.isRequired,
-	authChecked: PropTypes.bool.isRequired,
-	component: PropTypes.func.isRequired,
+	isAuth: PropTypes.string,
 };
 
 export default connect(state => ({
-	isAuth: true,
-	authChecked: true,
+	isAuth: state.isAuth,
 }))(AppRoute);

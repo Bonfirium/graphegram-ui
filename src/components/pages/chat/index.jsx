@@ -69,11 +69,12 @@ const getDialogs = () => [ {name: 'Deniska'}, {name: 'Anton'} ];
 
 const sendMessage = (userName, message) => {
 	const userMessages = messages.find(item => item.name === userName);
+	const today = new Date();
 	if (userMessages) {
 		userMessages.messages.push({
 			sender: 'Deniska',
 			message,
-			time: Date.UTC(),
+			time: `${today.getUTCHours()}:${today.getUTCMinutes()}`,
 		});
 	}
 };
