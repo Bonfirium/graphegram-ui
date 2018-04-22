@@ -82,11 +82,15 @@ body {
 	flex-direction: column;
 	vertical-align: 40px;
 	width: calc(100% - 65px - 50px);
+	align-content: center;
+
 }
+
 .ui .chat .info .name {
 	font-weight: 600;
 	color: #434753;
 	height: 50%;
+  margin: 3vh;
 }
 
 .ui .chat i.fa {
@@ -135,6 +139,8 @@ body {
 
 .ui .top {
 	height: 70px;
+  background-color: #62bf6e;
+
 }
 
 .ui .messages {
