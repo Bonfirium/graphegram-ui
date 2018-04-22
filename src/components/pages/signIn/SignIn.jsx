@@ -11,8 +11,6 @@ export default class App extends React.Component {
 
 	submit(e) {
 		e.preventDefault();
-		console.log(this.state.name);
-		console.log(this.state.password);
 	}
 
 	render() {
@@ -41,7 +39,7 @@ export default class App extends React.Component {
 								validation={validatePassword}
 							/>
 						</div>
-						<button className="auth-wrap-submit-btn" onClick={() => this.submit()}>Login</button>
+						<button type="submit" className="auth-btn-submit"><span>Sign In</span></button>
 					</form>
 				</div>
 			</div>
