@@ -1,6 +1,12 @@
-@import "__header";
-@import "__sign-up";
-@import "_auth";
-@import "_singIn";
+@import "_constants.sccs";
+
+@import "__auth";
+@import "__md-input";
 @import "__app";
-@import "_chat";
+@import "__chat";
+
+html, body {
+	margin: 0;
+	padding: 0;
+	@extend %background-gradient;
+}
